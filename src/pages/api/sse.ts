@@ -8,7 +8,7 @@ export default async function handler() {
   const readable = new ReadableStream({
     async start(controller) {
      const id = setInterval(() => {
-        controller.enqueue(new Date().toISOString());
+        controller.enqueue(encoder.encode(new Date().toISOString()));
       }, 500)
       setTimeout(() => {
         clearInterval(id)
