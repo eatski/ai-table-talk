@@ -1,4 +1,8 @@
-import { setTimeout } from "timers/promises";
+export const config = {
+  runtime: "edge",
+};
+
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export default async function handler() {
   const encoder = new TextEncoder();
@@ -6,13 +10,13 @@ export default async function handler() {
   const readable = new ReadableStream({
     async start(controller) {
       controller.enqueue(encoder.encode("<html><body>"));
-      await setTimeout(500);
+      await delay(500);
       controller.enqueue(encoder.encode("<ul><li>List Item 1</li>"));
-      await setTimeout(500);
+      await delay(500);
       controller.enqueue(encoder.encode("<li>List Item 2</li>"));
-      await setTimeout(500);
+      await delay(500);
       controller.enqueue(encoder.encode("<li>List Item 3</li></ul>"));
-      await setTimeout(500);
+      await delay(500);
       controller.enqueue(encoder.encode("</body></html>"));
       controller.close();
     },
