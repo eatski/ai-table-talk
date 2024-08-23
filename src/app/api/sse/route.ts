@@ -1,6 +1,8 @@
 import { Firestore } from "@google-cloud/firestore";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const encoder = new TextEncoder();
   const store = new Firestore({
